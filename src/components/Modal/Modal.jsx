@@ -1,4 +1,4 @@
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
 
 const customStyles = {
@@ -22,18 +22,24 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement('#root');
+ReactModal.setAppElement('#root');
 
 export const ModalWindow = ({ src, tags, modalIsOpen, closeModal }) => {
   return (
-    <Modal isOpen={modalIsOpen} style={customStyles} onRequestClose={closeModal}>
+    <ReactModal
+      isOpen={modalIsOpen}
+      style={customStyles}
+      onRequestClose={closeModal}
+      onAfterOpen={() => (document.body.style.overflow = 'hidden')}
+      onAfterClose={() => (document.body.style.overflow = 'unset')}
+    >
       <img
         src={src}
         alt={tags}
         width='900'
         className='max-h-[calc(100vh-24px)] basis-[calc(100vw-48px)] rounded-lg bg-white p-4'
       />
-    </Modal>
+    </ReactModal>
   );
 };
 
