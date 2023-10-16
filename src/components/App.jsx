@@ -75,7 +75,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div className='grid grid-cols-1 gap-4 pb-6'>
+      <div className='grid grid-cols-1 gap-4 pb-2'>
         <SearchBar onSubmit={this.handleSubmit} />
         {this.state.images.length > 0 && <ImageGallery images={this.state.images} />}
         {this.state.loading && <Loader />}
