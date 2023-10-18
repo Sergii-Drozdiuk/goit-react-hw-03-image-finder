@@ -34,6 +34,7 @@ export class App extends Component {
           tags,
         }));
         this.setState(prevState => ({ images: [...prevState.images, ...newImages] }));
+        this.smoothScroll();
         if (resp.totalHits !== 0 && this.state.page === 1) {
           toast.success(`Hooray! We found ${resp.totalHits} images!`);
         }
@@ -71,6 +72,14 @@ export class App extends Component {
 
   handleLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
+    this.smoothScroll();
+  };
+
+  smoothScroll = () => {
+    window.scrollBy({
+      top: document.documentElement.clientHeight,
+      behavior: 'smooth',
+    });
   };
 
   render() {
